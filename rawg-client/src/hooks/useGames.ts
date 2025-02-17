@@ -16,11 +16,18 @@ const useGames = () =>{
     const[error, setError] = useState<string>("");
 
        useEffect(()=> {
+
+        const controller = new AbortController();
+
             apiClient
-            .get<GameResponse>("/games")
+            .get<GameResponse>("/games",{signal:controller.signal})
             .then((res)=>setGames(res.data.results))
             .catch((err)=> setError(err.message));
+
+            return () => controller.abort()
         },[]);
+
+        
     return {games, error}
 }
 
