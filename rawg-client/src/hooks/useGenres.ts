@@ -4,26 +4,17 @@ import { CanceledError } from "axios";
 import { s } from "framer-motion/dist/types.d-6pKw1mTI";
 
 
-export interface Platform{
+interface Genre{
     id: number;
     name: string;
-    slug: string;
 }
-
-export interface Game {
-    id: number;
-    name: string;
-    background_image: string;
-    parent_platforms: {platform: Platform}[]
-    metacritic: number;
-}
-interface GameResponse{
+interface GenreResponse{
     count: number;
-    results:Game[];
+    results:Genre[];
 }
 
-const useGames = () =>{
-    const [games, setGames] = useState<Game[]>([]);
+const useGenres = () =>{
+    const [genres, setGenres] = useState<Genre[]>([]);
     const[error, setError] = useState<string>("");
     const [isLoading, setLoading] = useState<boolean>(false);
 
@@ -32,8 +23,8 @@ const useGames = () =>{
         const controller = new AbortController();
             setLoading(true);
             apiClient
-            .get<GameResponse>("/games",{signal:controller.signal})
-            .then((res)=>{setGames(res.data.results)
+            .get<GenreResponse>("/genres",{signal:controller.signal})
+            .then((res)=>{setGenres(res.data.results)
             setLoading(false)
             })
             .catch((err)=> {
@@ -47,7 +38,7 @@ const useGames = () =>{
         },[]);
 
 
-    return {games, error, isLoading};
+    return {genres, error, isLoading};
 }
 
-export default useGames;
+export default useGenres;
