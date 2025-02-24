@@ -1,10 +1,8 @@
-import React from 'react'
+import useGenres, { Genre } from '../hooks/useGenres'
 
-import useGenres from '../hooks/useGenres'
 
 const GenreList = () => {
-const {genres, error, isLoading} = useGenres();
-
+const {data: genres, error, isLoading} = useGenres();
 return (
   <div>
     {error && <p>{error}</p>}
