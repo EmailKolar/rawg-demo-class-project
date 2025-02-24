@@ -4,7 +4,7 @@ import { HStack, Image } from '@chakra-ui/react';
 import getCroppedImageUrl from '../services/image-url';
 
 interface Props{
-  onSelectGenre: (genre: Genre) => void;
+  onSelectGenre: (genre: Genre|null) => void;
   selectedGenre: Genre | null;
 }
 
@@ -24,7 +24,9 @@ const getColor = (genre: Genre)=>{
 
   return (
     <>
+    <Button onClick={()=> onSelectGenre(null)} colorScheme={selectedGenre ? "blue" : "gray"} variant="link">
     <Heading>Genres</Heading>
+    </Button>
     <List>
       {genres.map((genre: Genre) => (
         <ListItem key={genre.id}>

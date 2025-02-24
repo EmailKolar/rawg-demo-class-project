@@ -14,7 +14,7 @@ function App() {
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null
   );
   
-  const handleOnSelectGenre = (genre: Genre) => setSelectedGenre(genre);
+  const handleOnSelectGenre = (genre: Genre|null) => setSelectedGenre(genre);
   const handleOnSelectPlatform = (platform: Platform |null) => setSelectedPlatform(platform);
 
 
@@ -35,7 +35,10 @@ function App() {
     </Show>
     <GridItem pl='2' bg='green.300' area={'main'}>
       <PlatformSelector selectedplatform={selectedPlatform} onSelectPlatform={handleOnSelectPlatform}></PlatformSelector>
-      <GameGrid selectedGenre={selectedGenre}/>
+      <GameGrid
+          selectedGenre={selectedGenre}
+          selectedPlatform={selectedPlatform}
+        />
     </GridItem>
 
   </Grid>
