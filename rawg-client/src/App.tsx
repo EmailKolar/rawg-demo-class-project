@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { Genre } from './hooks/useGenres';
 import PlatformSelector from './components/PlatformSelector';
 import { Platform } from './hooks/usePlatforms';
+import { Store } from './hooks/useStores';
+import StoreList from './components/StoreList';
 
 
 function App() {
@@ -14,9 +16,10 @@ function App() {
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null
   );
   
+  const [selectedStore, setSelectedStore] = useState<Store | null>(null);
   const handleOnSelectGenre = (genre: Genre|null) => setSelectedGenre(genre);
   const handleOnSelectPlatform = (platform: Platform |null) => setSelectedPlatform(platform);
-
+  const handleSelectedStore = (store: Store | null) => setSelectedStore(store);
 
   return (
     <Grid
@@ -31,6 +34,10 @@ function App() {
     <Show above="lg">
     <GridItem pl='2' bg='pink.300' area={'aside'}>
      <GenreList onSelectGenre={handleOnSelectGenre} selectedGenre={selectedGenre}/>
+     <StoreList
+            onSelectedStore={handleSelectedStore}
+            selectedStore={selectedStore}
+          />
     </GridItem>
     </Show>
     <GridItem pl='2' bg='green.300' area={'main'}>
@@ -38,6 +45,7 @@ function App() {
       <GameGrid
           selectedGenre={selectedGenre}
           selectedPlatform={selectedPlatform}
+          selectedStore={selectedStore}
         />
     </GridItem>
 
