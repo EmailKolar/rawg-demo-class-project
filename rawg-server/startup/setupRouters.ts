@@ -7,7 +7,7 @@ import express, { Express } from 'express';
 const setupRouters = (app: express.Application) => {
     app.use("/genres", genreRouter);
     app.use("/games", gameRouter);
-    app.use("/platforms/list/parents", parentPlatformRouter);
+    app.use("/platforms/lists/parents", parentPlatformRouter);
     app.use("/stores", storeRouter);
 };
 
