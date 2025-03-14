@@ -18,26 +18,18 @@ interface Props {
 
 const PlatformIconsList = ({ platforms }: Props) => {
   const getIcon = (slug: string) => {
-    switch (slug) {
-      case "pc":
-        return FaWindows;
-      case "playstation":
-        return FaPlaystation;
-      case "xbox":
-        return FaXbox;
-      case "mac":
-        return FaApple;
-      case "linux":
-        return FaLinux;
-      case "android":
-        return FaAndroid;
-      case "ios":
-        return MdPhoneIphone;
-      case "nintendo":
-        return SiNintendo;
-      default:
-        return undefined;
-    }
+    const icons: Record<string, React.ElementType> = {
+      pc: FaWindows,
+      playstation: FaPlaystation,
+      xbox: FaXbox,
+      mac: FaApple,
+      linux: FaLinux,
+      android: FaAndroid,
+      ios: MdPhoneIphone,
+      nintendo: SiNintendo,
+    };
+
+    return icons[slug] || FaWindows; // Ensuring a valid icon is always returned
   };
 
   return (
