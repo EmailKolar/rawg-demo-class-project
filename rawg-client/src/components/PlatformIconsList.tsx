@@ -1,6 +1,5 @@
-
-import { Platform } from "../hooks/usePlatforms";
 import { HStack, Icon } from "@chakra-ui/react";
+import { Platform } from "../hooks/usePlatforms";
 
 import {
   FaWindows,
@@ -37,18 +36,15 @@ const PlatformIconsList = ({ platforms }: Props) => {
       case "nintendo":
         return SiNintendo;
       default:
-        return null; // Return null for unknown platforms
+        return undefined;
     }
   };
 
   return (
     <HStack margin={1}>
-      {platforms.map((platform) => {
-        const IconComponent = getIcon(platform.slug);
-        return IconComponent ? (
-          <Icon key={platform.id} as={IconComponent} boxSize={5} />
-        ) : null;
-      })}
+      {platforms.map((platform) => (
+        <Icon key={platform.id} as={getIcon(platform.slug)} />
+      ))}
     </HStack>
   );
 };
