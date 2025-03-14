@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --legacy-watch --exec ts-node --transpile-only index.ts"
+"build": "npm install && tsc",
+"start": "nodemon --legacy-watch --exec ts-node --transpile-only index.ts",
+"start-prod": "node dist/index.js"
   },
   "author": "",
   "license": "ISC",
