@@ -11,7 +11,7 @@ const connectionString = process.env.MYSQL_URL;
 export const AppDataSource = new DataSource({
   type: "mysql",
   url: connectionString,
-  synchronize: true, // Set to false in production and use migrations instead
+  synchronize: false, // Set to false in production and use migrations instead
   logging: true,
   entities: [Game, Genre, Store, ParentPlatform],
   migrations: [],
