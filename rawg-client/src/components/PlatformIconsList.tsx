@@ -17,7 +17,7 @@ interface Props {
 }
 
 const PlatformIconsList = ({ platforms }: Props) => {
-  const getIcon = (slug: string) => {
+  const getIcon = (slug: string): React.ElementType | undefined => {
     const icons: Record<string, React.ElementType> = {
       pc: FaWindows,
       playstation: FaPlaystation,
@@ -28,15 +28,17 @@ const PlatformIconsList = ({ platforms }: Props) => {
       ios: MdPhoneIphone,
       nintendo: SiNintendo,
     };
-
-    return icons[slug] || FaWindows; // Ensuring a valid icon is always returned
+  
+    return icons[slug]; // deploy test
   };
+  
 
   return (
     <HStack margin={1}>
-      {platforms.map((platform) => (
-        <Icon key={platform.id} as={getIcon(platform.slug)} />
-      ))}
+      {platforms.map((platform) => {
+  const IconComponent = getIcon(platform.slug);
+  return IconComponent ? <Icon key={platform.id} as={IconComponent} /> : null;
+})}
     </HStack>
   );
 };
