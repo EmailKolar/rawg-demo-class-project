@@ -5,7 +5,7 @@ import { AxiosRequestConfig, CanceledError } from "axios";
 
 
 
-interface Response<T>{
+export interface Response<T>{
     count: number;
     results:T[];
 }
