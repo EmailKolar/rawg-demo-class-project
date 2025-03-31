@@ -9,3 +9,8 @@ const apiClient = axios.create({
 });
 
 export default apiClient;
+//import { s } from "framer-motion/dist/types.d-6pKw1mTI";
+export interface Response<T> {
+    count: number;
+    results: T[];
+}

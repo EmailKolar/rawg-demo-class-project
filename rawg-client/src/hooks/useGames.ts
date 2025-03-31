@@ -4,7 +4,7 @@ import { GameQuery } from "../App";
 //import { Genre } from "./useGenres";
 import { Platform } from "./usePlatforms";
 //import { Store } from "./useStores";
-import { Response } from "./useData";
+import { Response } from "../services/api-client";
 import apiClient from "../services/api-client";
 
 
