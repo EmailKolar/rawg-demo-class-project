@@ -5,8 +5,10 @@ import { GameQuery } from "../App";
 import { Platform } from "./usePlatforms";
 //import { Store } from "./useStores";
 import { Response } from "../services/api-client";
-import apiClient from "../services/api-client";
+import ApiClient from "../services/api-client";
 
+
+const apiClient = new ApiClient<Game>("/games");
 
 export interface Game {
     id: number;
@@ -19,7 +21,7 @@ export interface Game {
 const useGames = (gameQuery: GameQuery) => useQuery<Response<Game>,Error>({
   queryKey:["games", gameQuery],
   queryFn: () => 
-    apiClient.get<Response<Game>>("/games", {
+    apiClient.getAll( {
       params: {
         genres: gameQuery.genre?.slug,
         platforms: gameQuery.platform?.id,
@@ -27,7 +29,7 @@ const useGames = (gameQuery: GameQuery) => useQuery<Response<Game>,Error>({
         search: gameQuery.searchText,
         page_size: 40,
       },
-    }).then((res) => res.data),
+    }),
   
 
 })
