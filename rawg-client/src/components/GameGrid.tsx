@@ -19,14 +19,14 @@ const GameGrid = ({
   const skeletons = [...Array(20).keys()];
 
   const {
-    data: games,
+    data: data,
     error,
     isLoading,
   } = useGames(gameQuery);
 
   return (
     <>
-      {error && <Text color="tomato">{error}</Text>}
+      {error && <Text color="tomato">{error.message}</Text>}
 
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
@@ -39,7 +39,7 @@ const GameGrid = ({
                 <GameCardSkeleton />
               </GameCardContainer>
             ))
-          : games.map((game) => (
+          : data?.results.map((game) => (
               <GameCardContainer key={game.id}>
                 <GameCard game={game} />
               </GameCardContainer>

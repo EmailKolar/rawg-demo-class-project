@@ -1,8 +1,11 @@
+import { useQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
-import useData from "./useData";
+
 //import { Genre } from "./useGenres";
 import { Platform } from "./usePlatforms";
 //import { Store } from "./useStores";
+import { Response } from "./useData";
+import apiClient from "../services/api-client";
 
 
 export interface Game {
@@ -13,21 +16,23 @@ export interface Game {
     metacritic: number;
 }
 
-const useGames = (
-    gameQuery: GameQuery
-  ) =>
-    useData<Game>(
-      "/games",
-      {
-        params: {
-          genres: gameQuery.genre?.slug,
-          parent_platforms: gameQuery.platform?.id,
-          stores: gameQuery.store?.id,
-          ordering: gameQuery.sortOrder,
-          search: gameQuery.searchText,
-        },
+const useGames = (gameQuery: GameQuery) => useQuery<Response<Game>,Error>({
+  queryKey:["games", gameQuery],
+  queryFn: () => 
+    apiClient.get<Response<Game>>("/games", {
+      params: {
+        genres: gameQuery.genre?.slug,
+        platforms: gameQuery.platform?.id,
+        ordering: gameQuery.sortOrder,
+        search: gameQuery.searchText,
+        page_size: 40,
       },
-      [gameQuery]
-    );
+    }).then((res) => res.data),
+  
+
+})
+
+
+
 
 export default useGames;
