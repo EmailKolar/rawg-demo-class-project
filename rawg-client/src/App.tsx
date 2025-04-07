@@ -13,9 +13,9 @@ import GameHeading from "./components/GameHeading";
 
 
 export interface GameQuery {
-  genre: Genre | null;
-  platform: Platform | null;
-  store: Store | null;
+  genreId?: number;
+  platformId?: number;
+  storeId?: number;
   sortOrder: string;
   searchText: string;
 }
@@ -24,11 +24,11 @@ function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   const handleOnSelectedGenre = (genre: Genre | null) =>
-    setGameQuery({ ...gameQuery, genre });
+    setGameQuery({ ...gameQuery, genreId: genre?.id });
   const handleOnSelectedPlatform = (platform: Platform | null) =>
-    setGameQuery({ ...gameQuery, platform });
+    setGameQuery({ ...gameQuery, platformId: platform?.id });
   const handleSelectedStore = (store: Store | null) =>
-    setGameQuery({ ...gameQuery, store });
+    setGameQuery({ ...gameQuery, storeId: store?.id });
   const handleOnSelectedSortOrder = (sortOrder: string) =>
     setGameQuery({ ...gameQuery, sortOrder });
   const handleOnSearch = (searchText: string) =>
@@ -59,13 +59,13 @@ function App() {
           <CustomList
             title="Genres"
             onSelectedItem={handleOnSelectedGenre}
-            selectedItem={gameQuery.genre}
+            selectedItemId={gameQuery.genreId}
             useDataHook={useGenres}
           />
           {<CustomList
             title="Stores"
             onSelectedItem={handleSelectedStore}
-            selectedItem={gameQuery.store}
+            selectedItemId={gameQuery.storeId}
             useDataHook={useStores}
           /> }
         </GridItem>
@@ -75,7 +75,7 @@ function App() {
           <GameHeading gameQuery={gameQuery} />
           <HStack>
             <PlatformSelector
-              selectedPlatform={gameQuery.platform}
+              selectedPlatformId={gameQuery.platformId}
               onSelectedPlatform={handleOnSelectedPlatform}
             />
             <SortSelector
