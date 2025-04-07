@@ -9,7 +9,20 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient(
+  {
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        retry: 3,
+        refetchOnMount: true,
+        refetchOnReconnect: true,
+        staleTime: 5000,
+        cacheTime: 10000,
+      },
+    },
+  }
+);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
