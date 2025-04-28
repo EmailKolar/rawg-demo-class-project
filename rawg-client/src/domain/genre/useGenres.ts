@@ -4,12 +4,7 @@ import { Response } from "../../services/api-client";
 import genres from "./genres";
 import ms from "ms";
 
-export interface Genre {
-  id: number;
-  name: string;
-  slug: string;
-  image_background: string;
-}
+import { Genre } from "./Genre";
 
 const apiClient = new ApiClient<Genre>("/genres");
 
