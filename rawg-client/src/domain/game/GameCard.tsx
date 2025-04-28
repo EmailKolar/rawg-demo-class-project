@@ -3,6 +3,7 @@ import { Game } from "./useGames";
 import PlatformIconsList from "../platform/PlatformIconsList";
 import CriticScore from "../../components/CriticScore";
 import getCroppedImageUrl from "../../services/image-url";
+import { Link } from "react-router-dom";
 
 interface Props {
     game: Game;
@@ -13,7 +14,11 @@ const GameCard = ({ game }: Props) => {
         <Card overflow={"hidden"} borderRadius={10}>
             <Image src={getCroppedImageUrl(game.background_image)} alt={game.name} />
             <CardBody>
-                <Heading fontSize="2xl">{game.name}</Heading>
+                <Heading fontSize="2xl">
+                    <HStack>
+                    <Link to={`/games/${game.id}`}>{game.name}</Link>
+                    </HStack>
+                </Heading>
                 <HStack justifyContent={"space-between"}>
                     <PlatformIconsList platforms={game.parent_platforms.map(p => p.platform)} />
                     <CriticScore score={game.metacritic}/>

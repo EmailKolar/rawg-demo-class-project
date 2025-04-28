@@ -10,6 +10,7 @@ export interface Game {
   parent_platforms: { platform: Platform }[];
   metacritic: number;
   rating_top: number;
+  description_raw: string;
 }
 
 const apiClient = new ApiClient<Game>("/games");
@@ -28,6 +29,7 @@ const useGames = () => {
           ordering: gameQuery.sortOrder,
           search: gameQuery.searchText,
           page: pageParam,
+          
         },
       }),
     getNextPageParam: (lastPage, allPages) => {
