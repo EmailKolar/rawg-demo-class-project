@@ -5,6 +5,7 @@ import { Genre } from "./entities/Genre";
 import { Store } from "./entities/Store";
 import { ParentPlatform } from "./entities/ParentPlatform";
 import "dotenv/config";
+import { Publisher } from "./entities/Publisher";
 
 const connectionString = process.env.MYSQL_URL;
 
@@ -18,7 +19,7 @@ export const AppDataSource = new DataSource({
   // database: "rawg-db",
   synchronize: true, // Set to false in production and use migrations instead
   logging: true,
-  entities: [Game, Genre, Store, ParentPlatform],
+  entities: [Game, Genre, Store, ParentPlatform, Publisher],
   migrations: [],
   subscribers: [],
 });
