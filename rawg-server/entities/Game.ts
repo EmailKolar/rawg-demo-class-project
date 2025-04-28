@@ -17,6 +17,9 @@ export class Game {
   @Column()
   name: string;
 
+  @Column({ type: "text", nullable: true })
+  description_raw?: string;
+
   @Column({ nullable: true })
   metacritic?: number;
 
@@ -31,6 +34,9 @@ export class Game {
 
   @Column({ nullable: true })
   added?: number;
+
+  @Column({ nullable: true })
+  rating_top?: number;
 
   @ManyToMany(() => Genre, (genre) => genre.games)
   @JoinTable()
