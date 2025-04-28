@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import './main.css'
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
 import theme from './theme'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { RouterProvider } from 'react-router-dom'
+import router from './pages/routes'
 
 
 
@@ -31,7 +32,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <ColorModeScript />
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools/>
-      <App />
+      <RouterProvider router={router} />
     </QueryClientProvider>
     </ChakraProvider>
   </React.StrictMode>,
